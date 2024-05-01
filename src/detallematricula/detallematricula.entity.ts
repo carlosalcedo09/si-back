@@ -4,6 +4,7 @@ import { Modalidad } from "src/modalidad/modalidad.entity";
 import { Notas } from "src/notas/notas.entity";
 import { Pabellon } from "src/pabellon/pabellon.entity";
 import { Profesor } from "src/profesor/profesor.entity";
+import { Turno } from "src/turno/turno.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
 
 @Entity({name: 'detallematricula'})
@@ -28,6 +29,9 @@ export class DetalleMatricula{
    idPabellon:string
 
    @Column()
+   idTurno:String
+
+   @Column()
    codigoD:number
 
    @Column()
@@ -44,6 +48,10 @@ export class DetalleMatricula{
    @ManyToOne(()=>Pabellon,(pabellon)=>pabellon.detallematricula)
    @JoinColumn({name:'idPabellon'})
    pabellon: Pabellon;
+
+   @ManyToOne(()=>Turno, (turno)=>turno.detallematricula)
+   @JoinColumn({name:'idTurno'})
+   turno: Turno;
 
    @ManyToOne(()=>Profesor,(profesor)=>profesor.detallematricula)
    @JoinColumn({name:'codigoD'})

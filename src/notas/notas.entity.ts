@@ -26,5 +26,5 @@ export class Notas{
     detalleMatricula: DetalleMatricula;
 
     @OneToMany(()=>DetalleNota, (detallenota)=>detallenota.notas)
-    detallenota: DetalleNota[]
+    detallenota: DetalleNota[];
 }

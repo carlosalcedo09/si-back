@@ -10,5 +10,5 @@ export class Unidad{
     descripcionU: string
 
     @OneToMany(()=>DetalleNota, (detallenota)=>detallenota.unidad)
-    detallenota: DetalleNota[]
+    detallenota: DetalleNota[];
 }

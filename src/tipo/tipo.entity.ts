@@ -11,5 +11,5 @@ export class Tipo{
     descripcion:string
 
     @OneToMany(()=>DetalleNota, (detallenota)=>detallenota.tipo)
-    detallenota: DetalleNota[]
+    detallenota: DetalleNota[];
 }

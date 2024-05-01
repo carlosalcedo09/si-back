@@ -32,7 +32,7 @@ import { DetallenotaModule } from './detallenota/detallenota.module';
       port:1433,
       username:'Sa',
       password: '12345678',
-      database: 'ucvdb',
+      database: 'UCV_DB',
       entities: [__dirname+'/**/*.entity{.ts,.js}'],
       synchronize: true,
       options: {

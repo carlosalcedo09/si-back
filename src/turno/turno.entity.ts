@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { DetalleMatricula } from "src/detallematricula/detallematricula.entity";
+import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 
 @Entity({})
 
@@ -9,4 +10,6 @@ export class Turno{
     @Column()
     descripcionTurno: string
 
+    @OneToMany(()=>DetalleMatricula,(detallematricula)=>detallematricula.turno)
+    detallematricula:DetalleMatricula[];
 }

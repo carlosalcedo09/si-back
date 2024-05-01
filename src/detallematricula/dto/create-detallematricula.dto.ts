@@ -5,6 +5,7 @@ export class CreateDetalleMatriculaDto{
     fechaTermino:Date
     aula: string
     idPabellon: string
+    idTurno:string
     codigoD: number
     idModalidad:string
 }

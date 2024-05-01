@@ -1,7 +1,7 @@
 import { Notas } from "src/notas/notas.entity";
 import { Tipo } from "src/tipo/tipo.entity";
 import { Unidad } from "src/unidad/unidad.entity";
-import { Column, Entity, JoinColumn, ManyToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 
 @Entity({name:'detallenota'})
 
@@ -18,14 +18,15 @@ export class DetalleNota{
     @Column({ type: 'decimal', precision: 10, scale: 2 })
     nota: number
 
-    @ManyToMany(()=>Notas, (notas)=>notas.detallenota)
-    @JoinColumn({name:'idDetalleMc'})
+    @ManyToOne(()=>Notas, (notas)=>notas.detallenota)
+    @JoinColumn({name:'idDetalleMC'})
     notas: Notas;
 
-    @ManyToMany(()=>Tipo,(tipo)=>tipo.detallenota)
+    @ManyToOne(()=>Tipo,(tipo)=>tipo.detallenota)
     @JoinColumn({name:'idTipo'})
     tipo: Tipo;
 
-    @ManyToMany(()=>Unidad, (unidad)=>unidad.detallenota)
+    @ManyToOne(()=>Unidad, (unidad)=>unidad.detallenota)
+    @JoinColumn({name:'idUnidad'})
     unidad: Unidad;
 }
