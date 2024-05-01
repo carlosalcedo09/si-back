@@ -1,4 +1,5 @@
-import {Entity, Column, PrimaryColumn} from 'typeorm'
+import { Profesor } from 'src/profesor/profesor.entity'
+import {Entity, Column, PrimaryColumn, OneToOne, JoinColumn} from 'typeorm'
 
 @Entity({name: 'usuario'})
 export class Usuario{
@@ -10,4 +11,12 @@ export class Usuario{
 
     @Column()
     password: string
+
+    @Column()
+    codigoD: number
+
+    @OneToOne(()=>Profesor, (profesor)=>profesor.usuario)
+    @JoinColumn({name:'codigoD'})
+    profesor: Profesor;
+
 }

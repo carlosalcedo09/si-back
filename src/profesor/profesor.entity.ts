@@ -2,7 +2,8 @@ import { DetalleMatricula } from "src/detallematricula/detallematricula.entity";
 import { Distrito } from "src/distrito/distrito.entity";
 import { EstadoCivil } from "src/estadocivil/estadocivil.entity";
 import { Genero } from "src/genero/genero.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
+import { Usuario } from "src/usuario/usuario.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
 
 @Entity({name:'profesor'})
 
@@ -51,5 +52,8 @@ export class Profesor{
 
     @OneToMany(()=>DetalleMatricula,(detallematricula)=>detallematricula.profesor)
     detallematricula:DetalleMatricula[];
+
+    @OneToOne(()=>Usuario,(usuario)=>usuario.profesor)
+    usuario: Usuario;
 
 }
