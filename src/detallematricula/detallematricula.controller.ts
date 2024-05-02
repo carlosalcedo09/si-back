@@ -32,4 +32,6 @@ export class DetallematriculaController {
     deleteDetalleM(@Param('idM', ParseIntPipe) id:number,@Param('idCurso') idC:string){
         return this.detalleMService.deleteDetalleM(id,idC);
     }
+
+    
 }
