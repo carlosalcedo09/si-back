@@ -4,6 +4,8 @@ import { Usuario } from './usuario.entity';
 import { Repository } from 'typeorm';
 import { CreateUsuarioDto } from './dto/create-usuario.dto'
 import { UpdateUsuarioDto} from './dto/update-usuario.dto';
+import { NotFoundException } from '@nestjs/common';
+
 
 @Injectable()
 export class UsuarioService {
@@ -65,5 +67,23 @@ export class UsuarioService {
         const updateUsuario= Object.assign(usuarioFound, usuario);
         return this.usuarioRepository.save(updateUsuario);
     }
+    async validarDocente(username: string, password: string): Promise<Usuario> {
+        try {
+          const usuario = await this.usuarioRepository.findOne({
+            where: {
+              username: username,
+              password: password, // Considera usar una función de hash si no lo estás haciendo.
+            },
+          });
+          if (!usuario) {
+            throw new NotFoundException('Credenciales incorrectas');
+          }
+          return usuario;
+        } catch (error) {
+          throw new NotFoundException('Credenciales incorrectas');
+        }
+      }
+      
+      
 }
 

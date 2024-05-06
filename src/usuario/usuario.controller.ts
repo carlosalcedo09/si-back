@@ -5,11 +5,17 @@ import { Controller,
          Param, 
          ParseIntPipe, 
          Delete,
-        Patch} from '@nestjs/common';
+        Patch,
+        ValidationPipe,
+        BadRequestException,
+        HttpException,
+        HttpStatus} from '@nestjs/common';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UsuarioService } from './usuario.service';
 import { Usuario } from './usuario.entity';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
+import { validate } from 'class-validator';
+import { LoginUsuarioDto } from './dto/login-usuario.dto';
 
 @Controller('usuario')
 export class UsuarioController {
@@ -39,5 +45,18 @@ export class UsuarioController {
     @Patch(':id')
     updateUsuario(@Param('id', ParseIntPipe)id:number, @Body() usuario: UpdateUsuarioDto){
         this.usuarioService.updateUsuario(id,usuario)
+    }
+
+    @Post('validar')
+    async validarEmpleado(@Body() loginDto: LoginUsuarioDto): Promise<any> {
+      try {
+        const usuario = await this.usuarioService.validarDocente(loginDto.username, loginDto.password);
+        if (!usuario) {
+          throw new HttpException('Credenciales incorrectas', HttpStatus.UNAUTHORIZED);
+        }
+        return { message: 'Autenticación exitosa' };
+      } catch (error) {
+        throw new HttpException('Credenciales incorrectas', HttpStatus.UNAUTHORIZED);
+      }
     }
 }
