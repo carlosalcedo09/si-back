@@ -77,4 +77,18 @@ export class DetallematriculaService {
        return result;
     }
 
+    async SeccionesCursoProfesor(idCurso: string, codigoD: number) {
+        return this.detallematriculaRepository.createQueryBuilder('d')
+            .select('d.idPabellon', 'idPabellon')
+            .addSelect('d.aula', 'aula')
+            .addSelect('m.descripcionM', 'descripcionM')
+            .addSelect('t.descripcionTurno', 'descripcionTurno')
+            .innerJoin('d.modalidad', 'm', 'd.idModalidad = m.idModalidad')
+            .innerJoin('d.turno', 't', 'd.idTurno = t.idTurno')
+            .where('d.idCurso = :idCurso', { idCurso })
+            .andWhere('d.codigoD = :codigoD', { codigoD })
+            .distinct(true)
+            .getRawMany();
+    }
+
 }

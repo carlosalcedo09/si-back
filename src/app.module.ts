@@ -27,11 +27,11 @@ import { DetallenotaModule } from './detallenota/detallenota.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type:'mssql',
-      host:'LAPTOP-S2348A7G',
+      type:'mssql', 
+      host:'DESKTOP-G8P3KD4',
       port:1433,
-      username:'CAM',
-      password: '14092004',
+      username:'Sa',
+      password: '12345678',
       database: 'UCV_DB',
       entities: [__dirname+'/**/*.entity{.ts,.js}'],
       synchronize: true,

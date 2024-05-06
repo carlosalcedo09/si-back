@@ -24,13 +24,13 @@ export class DetallenotaController {
         return this.detallenotaService.createDetalleNota(newDetalleNota);
     }
     
-    @Get(':id, :idTipo, :idUnidad')
+    @Get(':id/ :idTipo/ :idUnidad')
     getNota(@Param('id') id:string,@Param('idTipo') idT:string,@Param('idUnidad') idU:string, )
     {
         return this.detallenotaService.getDetalleNota(id,idT,idU);
     }
     
-    @Delete(':id, :idTipo, :idUnidad')
+    @Delete(':id/ :idTipo/ :idUnidad')
     deleteNota(@Param('id') id:string,@Param('idTipo') idT:string,@Param('idUnidad') idU:string, )
     {
         return this.detallenotaService.deleteDetalleNota(id,idT,idU);

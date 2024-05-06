@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CicloService } from 'src/ciclo/ciclo.service';
 import { CategoriacursoService } from 'src/categoriacurso/categoriacurso.service';
 import { CreateCursoDto } from './dto/create-curso.dto';
+import { DetalleMatricula } from 'src/detallematricula/detallematricula.entity';
 
 @Injectable()
 export class CursoService {
@@ -12,10 +13,9 @@ export class CursoService {
     constructor(@InjectRepository(Curso) 
     private cursoRepository: Repository<Curso>,
     private cicloService: CicloService,
-    private categoriacursoService: CategoriacursoService){}
+    private categoriacursoService: CategoriacursoService,){}
     
-    async createCurso(curso: CreateCursoDto){
-        
+    async createCurso(curso: CreateCursoDto){    
        const cursoFound= await this.cursoRepository.findOne({
             where:{
                 idCurso: curso.idCurso
@@ -64,5 +64,13 @@ export class CursoService {
         return new HttpException('Curso not found', HttpStatus.NOT_FOUND);
        }
        return result;
+    }
+
+    //OBTENER CURSOS POR DOCENTE
+    async profesorCursos(codigoD: number): Promise<Curso[]> {
+        return this.cursoRepository.createQueryBuilder('curso')
+            .leftJoinAndSelect('curso.detallematricula', 'detalle')
+            .where('detalle.codigoD = :codigoD', { codigoD })
+            .getMany();
     }
 }

@@ -4,6 +4,7 @@ import { Controller ,
     Get,
     Param,
     Delete,
+    ParseIntPipe,
  } from '@nestjs/common';
 import { CursoService } from './curso.service';
 import { Curso } from './curso.entity';
@@ -24,13 +25,18 @@ export class CursoController {
         return this.cursoService.createCurso(newCurso);
     }
     
-    @Get(':id')
+    @Get('by-id/:id')
     getCurso(@Param('id') id:string){
         return this.cursoService.getCurso(id);
     }
     
-    @Delete(':id')
+    @Delete('by-id/:id')
     deleteCurso(@Param('id') id:string){
         return this.cursoService.deleteCurso(id);
+    }
+
+    @Get('by-codigoD/:codigoD')
+    profesorCursos(@Param('codigoD',ParseIntPipe) codigoD: number){
+        return this.cursoService.profesorCursos(codigoD);
     }
 }

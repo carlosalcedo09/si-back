@@ -23,15 +23,18 @@ export class DetallematriculaController {
         return this.detalleMService.createDetalleM(newDetalleMatricula);
     }
     
-    @Get(':idM ,:idCurso')
+    @Get(':idM/:idCurso')
     getDetalleM(@Param('idM', ParseIntPipe) id:number,@Param('idCurso') idC:string){
         return this.detalleMService.getDetalleM(id,idC);
     }
     
-    @Delete(':idM ,:idCurso')
+    @Delete(':idM/:idCurso')
     deleteDetalleM(@Param('idM', ParseIntPipe) id:number,@Param('idCurso') idC:string){
         return this.detalleMService.deleteDetalleM(id,idC);
     }
 
-    
+    @Get('secciones/:idCurso/:codigoD')
+    SeccionesCursoProfesor(@Param('idCurso') idCurso:string,@Param('codigoD', ParseIntPipe) codigoD:number){
+       return this.detalleMService.SeccionesCursoProfesor(idCurso,codigoD);
+    }
 }
