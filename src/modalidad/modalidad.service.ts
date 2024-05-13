@@ -9,14 +9,14 @@ export class ModalidadService {
     constructor(@InjectRepository(Modalidad) private modalidadRepository: Repository<Modalidad>){}
     
     async createModalidad(modalidad: CreateModalidadDto){
-       const modalidadFound= await this.modalidadRepository.findOne({
+        const modalidadFound= await this.modalidadRepository.findOne({
             where:{
                 idModalidad: modalidad.idModalidad
             }
         })
 
         if(modalidadFound){
-           return new HttpException('Modalidad already exists',HttpStatus.CONFLICT)
+            return new HttpException('Modalidad already exists',HttpStatus.CONFLICT)
         }
 
         const newModalidad= this.modalidadRepository.create(modalidad)
@@ -27,7 +27,7 @@ export class ModalidadService {
         return this.modalidadRepository.find()
     }
 
-   async getModalidad(idModalidad: string){
+    async getModalidad(idModalidad: string){
         const modalidadFound = await this.modalidadRepository.findOne({
             where:{
                 idModalidad
@@ -41,10 +41,10 @@ export class ModalidadService {
     }
 
     async deleteModalidad(idModalidad: string){
-       const result= await this.modalidadRepository.delete({idModalidad});
-       if(result.affected === 0){
-        return new HttpException('Modalidad not found', HttpStatus.NOT_FOUND);
-       }
-       return result;
-    }
+        const result= await this.modalidadRepository.delete({idModalidad});
+        if(result.affected === 0){
+            return new HttpException('Modalidad not found', HttpStatus.NOT_FOUND);
+        }
+        return result;
+        }
 }

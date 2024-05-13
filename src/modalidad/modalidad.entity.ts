@@ -5,11 +5,11 @@ import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 
 export class Modalidad{
     @PrimaryColumn() 
-   idModalidad:string
+    idModalidad:string
 
-   @Column()
-   descripcionM:string
-   
-   @OneToMany(()=>DetalleMatricula,(detallematricula)=>detallematricula.curso)
-   detallematricula:DetalleMatricula[];
-}
+    @Column()
+    descripcionM:string
+    
+    @OneToMany(()=>DetalleMatricula,(detallematricula)=>detallematricula.curso)
+    detallematricula:DetalleMatricula[];
+    }

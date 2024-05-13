@@ -5,7 +5,7 @@ import { Controller ,
     Param,
     Delete,
     ParseIntPipe,
- } from '@nestjs/common';
+} from '@nestjs/common';
 import { CursoService } from './curso.service';
 import { Curso } from './curso.entity';
 import { CreateCursoDto } from './dto/create-curso.dto';
@@ -39,4 +39,5 @@ export class CursoController {
     profesorCursos(@Param('codigoD',ParseIntPipe) codigoD: number){
         return this.cursoService.profesorCursos(codigoD);
     }
+    
 }

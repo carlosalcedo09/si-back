@@ -22,7 +22,7 @@ export class Notas{
 
     @ManyToOne(() => DetalleMatricula, (detalleMatricula)=> detalleMatricula.notas)
     @JoinColumn([{ name: 'idMatricula', referencedColumnName: 'idMatricula' },
-                 { name: 'idCurso', referencedColumnName: 'idCurso' }])
+                { name: 'idCurso', referencedColumnName: 'idCurso' }])
     detalleMatricula: DetalleMatricula;
 
     @OneToMany(()=>DetalleNota, (detallenota)=>detallenota.notas)

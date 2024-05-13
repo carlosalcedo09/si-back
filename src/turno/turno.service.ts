@@ -9,14 +9,14 @@ export class TurnoService {
     constructor(@InjectRepository(Turno) private turnoRepository: Repository<Turno>){}
     
     async createTurno(turno: CreateTurnoDto){
-       const turnoFound= await this.turnoRepository.findOne({
+        const turnoFound= await this.turnoRepository.findOne({
             where:{
                 idTurno: turno.idTurno
                 }
         })
 
         if(turnoFound){
-           return new HttpException('Turno already exists',HttpStatus.CONFLICT)
+            return new HttpException('Turno already exists',HttpStatus.CONFLICT)
         }
 
         const newTurno= this.turnoRepository.create(turno)
@@ -27,7 +27,7 @@ export class TurnoService {
         return this.turnoRepository.find()
     }
 
-   async getTurno(idTurno: string){
+    async getTurno(idTurno: string){
         const turnoFound = await this.turnoRepository.findOne({
             where:{
                 idTurno
@@ -41,10 +41,10 @@ export class TurnoService {
     }
 
     async deleteTurno(idTurno: string){
-       const result= await this.turnoRepository.delete({idTurno});
-       if(result.affected === 0){
-        return new HttpException('Turno not found', HttpStatus.NOT_FOUND);
-       }
-       return result;
+        const result= await this.turnoRepository.delete({idTurno});
+        if(result.affected === 0){
+            return new HttpException('Turno not found', HttpStatus.NOT_FOUND);
+        }
+        return result;
+        }
     }
-}

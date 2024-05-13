@@ -6,7 +6,7 @@ import { CreateDistritoDto } from './dto/create-distrito.dto';
 
 @Injectable()
 export class DistritoService {
-  
+
     constructor(@InjectRepository(Distrito) private distritoRepository: Repository<Distrito>){
     }
 
@@ -38,15 +38,15 @@ export class DistritoService {
 
         if(!distritoFound){
             return new HttpException('City not found',HttpStatus.NOT_FOUND);
-     
-       }
-       return distritoFound;
+    
+        }
+        return distritoFound;
     }
 
     async deleteDistrito(IDDistrito: number){
         const result= await this.distritoRepository.delete({IDDistrito});
         if(result.affected===0){
-          return new HttpException('City not found', HttpStatus.NOT_FOUND);
+            return new HttpException('City not found', HttpStatus.NOT_FOUND);
         }
         return result;
     }

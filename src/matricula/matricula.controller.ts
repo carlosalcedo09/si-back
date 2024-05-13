@@ -11,7 +11,7 @@ import { CreateMatriculaDto } from './dto/create-matricula.dto';
 
 @Controller('matricula')
 export class MatriculaController {
-       
+
     constructor(private matriculaService: MatriculaService){}
 
     @Get()
@@ -33,5 +33,21 @@ export class MatriculaController {
     deleteMatricula(@Param('id', ParseIntPipe) id:number){
         return this.matriculaService.deleteMatricula(id);
     }
+
+    @Get('listaestudiante/:codigoD/:idCurso/:aula')
+    ListaCodigoCursoAula (@Param('codigoD', ParseIntPipe) codigoD:number, @Param('idCurso') idCurso:string,@Param('aula') aula:string){
+        return this.matriculaService.ListaCodigoCursoAula(codigoD,idCurso,aula);
+    }
+
+    @Get('condicion-nota/:codigoD/:idCurso/:aula/:idUnidad')
+    async getCondicionNota(
+        @Param('codigoD') codigoD: number,
+        @Param('idCurso') idCurso: string,
+        @Param('aula') aula: string,
+        @Param('idUnidad') idUnidad:string,
+    ) {
+        return this.matriculaService.getCondicionNota(codigoD, idCurso, aula, idUnidad);
+    }
+
 
 }

@@ -5,13 +5,13 @@ import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 
 export class Pabellon{
 
-    @PrimaryColumn()
-       IdPabellon: string
-    
-    @Column()
-       NombrePabellon: string
+      @PrimaryColumn()
+         IdPabellon: string
+      
+      @Column()
+         NombrePabellon: string
 
-    
-    @OneToMany(()=>DetalleMatricula,(detallematricula)=>detallematricula.pabellon)
-       detallematricula:DetalleMatricula[];
-}
+      
+      @OneToMany(()=>DetalleMatricula,(detallematricula)=>detallematricula.pabellon)
+         detallematricula:DetalleMatricula[];
+   }

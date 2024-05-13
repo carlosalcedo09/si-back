@@ -21,13 +21,13 @@ export class EstudianteService {
     
     async createEstudiante(estudiante: CreateEstudianteDto){
         
-       const estudianteFound= await this.estudianteRepository.findOne({
+        const estudianteFound= await this.estudianteRepository.findOne({
             where:{
                 codigoE: estudiante.codigoE
             }
         })
         if(estudianteFound){
-           return new HttpException('Student already exists',HttpStatus.CONFLICT)
+            return new HttpException('Student already exists',HttpStatus.CONFLICT)
         }
 
         const estadoFound= await this.estadocivilService.getEstado(estudiante.idEstado,);
@@ -40,7 +40,7 @@ export class EstudianteService {
             return new HttpException(
                 'Faltan datos (idEstadoCivil, idGenero, idDistrito, idCarrera, idCategoriaEstudiante)',
                 HttpStatus.NOT_FOUND,
-              );
+                );
         }
 
         const newEstudiante= this.estudianteRepository.create(estudiante)
@@ -53,7 +53,7 @@ export class EstudianteService {
         });
     }
 
-   async getEstudiante(codigoE: number){
+    async getEstudiante(codigoE: number){
         const estudianteFound = await this.estudianteRepository.findOne({
             where:{
                 codigoE
@@ -67,10 +67,10 @@ export class EstudianteService {
     }
 
     async deleteEstudiante(codigoE: number){
-       const result= await this.estudianteRepository.delete({codigoE});
-       if(result.affected === 0){
+        const result= await this.estudianteRepository.delete({codigoE});
+        if(result.affected === 0){
         return new HttpException('Student not found', HttpStatus.NOT_FOUND);
-       }
-       return result;
+        }
+        return result;
     }
 }

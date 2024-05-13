@@ -7,9 +7,9 @@ import { CreateEstadoCivilDto } from './dto/create-estadocivil.dto';
 @Injectable()
 export class EstadocivilService {
 
-     constructor(@InjectRepository(EstadoCivil) private estadocivilRepository: Repository<EstadoCivil>){}
+    constructor(@InjectRepository(EstadoCivil) private estadocivilRepository: Repository<EstadoCivil>){}
 
-     async createEstadoCivil(estadocivil:CreateEstadoCivilDto){
+    async createEstadoCivil(estadocivil:CreateEstadoCivilDto){
         const estadoFound= await this.estadocivilRepository.findOne({
             where:{
                 idEstado: estadocivil.idEstado
@@ -21,13 +21,13 @@ export class EstadocivilService {
         }
         const newEstadoCivil= this.estadocivilRepository.create(estadocivil);
         return this.estadocivilRepository.save(newEstadoCivil);
-     }
+    }
 
-     getEstados(){
+    getEstados(){
         return this.estadocivilRepository.find();
-     }
+    }
 
-     async getEstado(idEstado: string){
+    async getEstado(idEstado: string){
         const estadoFound= await this.estadocivilRepository.findOne({
             where:{
                 idEstado
@@ -38,9 +38,9 @@ export class EstadocivilService {
             return new HttpException('Status not found',HttpStatus.NOT_FOUND);
         }
         return estadoFound;
-     }
-     
-     async deleteEstado(idEstado: string){
+    }
+    
+    async deleteEstado(idEstado: string){
         const result= await this.estadocivilRepository.delete({idEstado})
         if(result.affected===0){
             return new HttpException('Status not found', HttpStatus.NOT_FOUND);

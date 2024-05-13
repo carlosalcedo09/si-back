@@ -10,14 +10,14 @@ export class CicloService {
     constructor(@InjectRepository(Ciclo) private cicloRepository: Repository<Ciclo>){}
     
     async createCiclo(ciclo: CreateCicloDto){
-       const cicloFound= await this.cicloRepository.findOne({
+        const cicloFound= await this.cicloRepository.findOne({
             where:{
                 idCiclo: ciclo.idCiclo
             }
         })
 
         if(cicloFound){
-           return new HttpException('Ciclo already exists',HttpStatus.CONFLICT)
+            return new HttpException('Ciclo already exists',HttpStatus.CONFLICT)
         }
 
         const newCiclo= this.cicloRepository.create(ciclo)
@@ -28,7 +28,7 @@ export class CicloService {
         return this.cicloRepository.find()
     }
 
-   async getCiclo(idCiclo: number){
+    async getCiclo(idCiclo: number){
         const cicloFound = await this.cicloRepository.findOne({
             where:{
                 idCiclo
@@ -42,10 +42,10 @@ export class CicloService {
     }
 
     async deleteCiclo(idCiclo: number){
-       const result= await this.cicloRepository.delete({idCiclo});
-       if(result.affected === 0){
+        const result= await this.cicloRepository.delete({idCiclo});
+        if(result.affected === 0){
         return new HttpException('Ciclo not found', HttpStatus.NOT_FOUND);
-       }
-       return result;
+        }
+        return result;
     }
 }

@@ -36,7 +36,7 @@ export class TipoService {
         });
 
         if(!tipoFound){
-           return new HttpException('Type not found', HttpStatus.NOT_FOUND);
+            return new HttpException('Type not found', HttpStatus.NOT_FOUND);
         }
         return tipoFound;
     }
@@ -44,7 +44,7 @@ export class TipoService {
     async deleteTipo(idTipo: string){
         const result= await this.tipoRepository.delete({idTipo})
         if(result.affected===0){
-          return new HttpException('Type not found', HttpStatus.NOT_FOUND);
+            return new HttpException('Type not found', HttpStatus.NOT_FOUND);
         }
         return result;
     }

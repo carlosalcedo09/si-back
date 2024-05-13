@@ -13,13 +13,13 @@ export class CarreraService {
     
     async createCarrera(carrera: CreateCarreraDto){
         
-       const carreraFound= await this.carreraRepository.findOne({
+        const carreraFound= await this.carreraRepository.findOne({
             where:{
                 idCarrera: carrera.idCarrera
             }
         })
         if(carreraFound){
-           return new HttpException('Carrera already exists',HttpStatus.CONFLICT)
+            return new HttpException('Carrera already exists',HttpStatus.CONFLICT)
         }
 
         const facultadFound= await this.facultadService.getFacultad(
@@ -29,7 +29,7 @@ export class CarreraService {
             return new HttpException(
                 'Faltan datos (idFacultad)',
                 HttpStatus.NOT_FOUND,
-              );
+                );
         }
 
         const newCarrera= this.carreraRepository.create(carrera)
@@ -42,7 +42,7 @@ export class CarreraService {
         });
     }
 
-   async getCarrera(idCarrera: number){
+    async getCarrera(idCarrera: number){
         const carreraFound = await this.carreraRepository.findOne({
             where:{
                 idCarrera
@@ -56,10 +56,10 @@ export class CarreraService {
     }
 
     async deleteCarrera(idCarrera: number){
-       const result= await this.carreraRepository.delete({idCarrera});
-       if(result.affected === 0){
+        const result= await this.carreraRepository.delete({idCarrera});
+        if(result.affected === 0){
         return new HttpException('Carrera not found', HttpStatus.NOT_FOUND);
-       }
-       return result;
+        }
+        return result;
     }
 }

@@ -35,6 +35,6 @@ export class DetallematriculaController {
 
     @Get('secciones/:idCurso/:codigoD')
     SeccionesCursoProfesor(@Param('idCurso') idCurso:string,@Param('codigoD', ParseIntPipe) codigoD:number){
-       return this.detalleMService.SeccionesCursoProfesor(idCurso,codigoD);
+        return this.detalleMService.SeccionesCursoProfesor(idCurso,codigoD);
     }
 }

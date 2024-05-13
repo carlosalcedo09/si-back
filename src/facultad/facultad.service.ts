@@ -10,14 +10,14 @@ export class FacultadService {
     constructor(@InjectRepository(Facultad) private facultadRepository: Repository<Facultad>){}
     
     async createFacultad(facultad: CreateFacultadDto){
-       const facultadFound= await this.facultadRepository.findOne({
+        const facultadFound= await this.facultadRepository.findOne({
             where:{
                 idFacultad: facultad.idFacultad
             }
         })
 
         if(facultadFound){
-           return new HttpException('Faculty already exists',HttpStatus.CONFLICT)
+            return new HttpException('Faculty already exists',HttpStatus.CONFLICT)
         }
 
         const newFacultad= this.facultadRepository.create(facultad)
@@ -28,7 +28,7 @@ export class FacultadService {
         return this.facultadRepository.find()
     }
 
-   async getFacultad(idFacultad: number){
+    async getFacultad(idFacultad: number){
         const facultadFound = await this.facultadRepository.findOne({
             where:{
                 idFacultad
@@ -42,10 +42,10 @@ export class FacultadService {
     }
 
     async deleteFacultad(idFacultad: number){
-       const result= await this.facultadRepository.delete({idFacultad});
-       if(result.affected === 0){
+        const result= await this.facultadRepository.delete({idFacultad});
+        if(result.affected === 0){
         return new HttpException('Faculty not found', HttpStatus.NOT_FOUND);
-       }
-       return result;
+        }
+        return result;
     }
 }

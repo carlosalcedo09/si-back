@@ -1,17 +1,17 @@
 import { Controller,
-         Post,
-         Body,
-         Get,
-         Param,
-         Delete, 
-         ParseIntPipe} from '@nestjs/common';
+            Post,
+            Body,
+            Get,
+            Param,
+            Delete, 
+            ParseIntPipe} from '@nestjs/common';
 import { FacultadService } from './facultad.service';
 import { Facultad } from './facultad.entity';
 import { CreateFacultadDto } from './dto/create-facultad.dto';
 
 @Controller('facultad')
 export class FacultadController {
-     
+
     constructor(private facultadService: FacultadService){}
 
     @Get()

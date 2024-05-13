@@ -1,9 +1,9 @@
 import { Controller,
-         Post,
-         Body,
-         Get,
-         Param,
-         Delete} from '@nestjs/common';
+            Post,
+            Body,
+            Get,
+            Param,
+            Delete} from '@nestjs/common';
 import { GeneroService } from './genero.service';
 import { Genero } from './genero.entity';
 import { CreateGeneroDto } from './dto/create-genero.dto';

@@ -16,13 +16,13 @@ export class CursoService {
     private categoriacursoService: CategoriacursoService,){}
     
     async createCurso(curso: CreateCursoDto){    
-       const cursoFound= await this.cursoRepository.findOne({
+        const cursoFound= await this.cursoRepository.findOne({
             where:{
                 idCurso: curso.idCurso
             }
         })
         if(cursoFound){
-           return new HttpException('Curso already exists',HttpStatus.CONFLICT)
+            return new HttpException('Curso already exists',HttpStatus.CONFLICT)
         }
 
         const cicloFound= await this.cicloService.getCiclo(curso.idCiclo,);
@@ -32,7 +32,7 @@ export class CursoService {
             return new HttpException(
                 'Faltan datos (idCiclo,idCategoriaCurso)',
                 HttpStatus.NOT_FOUND,
-              );
+                );
         }
 
         const newCurso= this.cursoRepository.create(curso)
@@ -45,7 +45,7 @@ export class CursoService {
         });
     }
 
-   async getCurso(idCurso: string){
+    async getCurso(idCurso: string){
         const cursoFound = await this.cursoRepository.findOne({
             where:{
                 idCurso
@@ -59,11 +59,11 @@ export class CursoService {
     }
 
     async deleteCurso(idCurso: string){
-       const result= await this.cursoRepository.delete({idCurso});
-       if(result.affected === 0){
+        const result= await this.cursoRepository.delete({idCurso});
+        if(result.affected === 0){
         return new HttpException('Curso not found', HttpStatus.NOT_FOUND);
-       }
-       return result;
+        }
+        return result;
     }
 
     //OBTENER CURSOS POR DOCENTE

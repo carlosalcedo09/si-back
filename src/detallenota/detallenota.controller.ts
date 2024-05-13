@@ -4,7 +4,7 @@ import { Controller,
     Get,
     Param,
     Delete
- } from '@nestjs/common';
+    } from '@nestjs/common';
 import { DetallenotaService } from './detallenota.service';
 import { DetalleNota } from './detallenota.entity';
 import { CreateDetalleNotaDto } from './dto/create-detallenota.dto';

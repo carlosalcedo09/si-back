@@ -22,14 +22,14 @@ export class DetallematriculaService {
     
     async createDetalleM(detallematricula: CreateDetalleMatriculaDto){
         
-       const detallematriculaFound= await this.detallematriculaRepository.findOne({
+        const detallematriculaFound= await this.detallematriculaRepository.findOne({
             where:{
                 idMatricula: detallematricula.idMatricula,
                 idCurso: detallematricula.idCurso
             }
         })
         if(detallematriculaFound){
-           return new HttpException('DetalleMatricula already exists',HttpStatus.CONFLICT)
+            return new HttpException('DetalleMatricula already exists',HttpStatus.CONFLICT)
         }
 
         const matriculaFound= await this.matriculaService.getMatricula(detallematricula.idMatricula,);
@@ -42,7 +42,7 @@ export class DetallematriculaService {
             return new HttpException(
                 'Faltan datos (idMatricula, codigoD, idCurso,idPabellon, idModalidad)',
                 HttpStatus.NOT_FOUND,
-              );
+                );
         }
 
         const newDetalleMatricula= this.detallematriculaRepository.create(detallematricula)
@@ -55,7 +55,7 @@ export class DetallematriculaService {
         });
     }
 
-   async getDetalleM(idMatricula: number, idCurso: string){
+    async getDetalleM(idMatricula: number, idCurso: string){
         const detallematriculaFound = await this.detallematriculaRepository.findOne({
             where:{
                 idMatricula,
@@ -70,11 +70,11 @@ export class DetallematriculaService {
     }
 
     async deleteDetalleM(idMatricula: number, idCurso: string){
-       const result= await this.detallematriculaRepository.delete({idMatricula,idCurso});
-       if(result.affected === 0){
+        const result= await this.detallematriculaRepository.delete({idMatricula,idCurso});
+        if(result.affected === 0){
         return new HttpException('Detalle matrícula not found', HttpStatus.NOT_FOUND);
-       }
-       return result;
+        }
+        return result;
     }
 
     async SeccionesCursoProfesor(idCurso: string, codigoD: number) {

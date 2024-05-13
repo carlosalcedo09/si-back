@@ -1,11 +1,11 @@
 import { Controller,
-         Post,
-         Body,
-         Get,
-         Param,
-         ParseIntPipe,
-         Delete,
-         Patch} from '@nestjs/common';
+            Post,
+            Body,
+            Get,
+            Param,
+            ParseIntPipe,
+            Delete,
+            Patch} from '@nestjs/common';
 import { DistritoService } from './distrito.service';
 import { CreateDistritoDto } from './dto/create-distrito.dto';
 import { Distrito } from './distrito.entity';
@@ -17,7 +17,7 @@ export class DistritoController {
 
     @Get()
     getDistritos(): Promise<Distrito[]>{
-       return this.distritoService.getDistritos();
+        return this.distritoService.getDistritos();
     }
 
     @Post()

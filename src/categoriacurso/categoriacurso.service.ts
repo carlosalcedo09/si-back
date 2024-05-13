@@ -9,14 +9,14 @@ export class CategoriacursoService {
     constructor(@InjectRepository(CategoriaCurso) private catcursoRepository: Repository<CategoriaCurso>){}
     
     async createCategoriaC(categoriacurso: CreateCategoriaCursoDto){
-       const categoriacursoFound= await this.catcursoRepository.findOne({
+        const categoriacursoFound= await this.catcursoRepository.findOne({
             where:{
                 idCategoriaCurso: categoriacurso.idCategoriaCurso
             }
         })
 
         if(categoriacursoFound){
-           return new HttpException('Category already exists',HttpStatus.CONFLICT)
+            return new HttpException('Category already exists',HttpStatus.CONFLICT)
         }
 
         const newCategoriaC= this.catcursoRepository.create(categoriacurso)
@@ -27,7 +27,7 @@ export class CategoriacursoService {
         return this.catcursoRepository.find()
     }
 
-   async getCategoriaC(idCategoriaCurso: string){
+    async getCategoriaC(idCategoriaCurso: string){
         const categoriacursoFound = await this.catcursoRepository.findOne({
             where:{
                 idCategoriaCurso
@@ -41,10 +41,10 @@ export class CategoriacursoService {
     }
 
     async deleteCategoriaC(idCategoriaCurso: string){
-       const result= await this.catcursoRepository.delete({idCategoriaCurso});
-       if(result.affected === 0){
+        const result= await this.catcursoRepository.delete({idCategoriaCurso});
+        if(result.affected === 0){
         return new HttpException('Category not found', HttpStatus.NOT_FOUND);
-       }
-       return result;
+        }
+        return result;
     }
 }

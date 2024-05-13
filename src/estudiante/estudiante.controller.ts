@@ -11,7 +11,7 @@ import { CreateEstudianteDto } from './dto/create-estudiante.dto';
 
 @Controller('estudiante')
 export class EstudianteController {
-       
+
     constructor(private estudianteService: EstudianteService){}
 
     @Get()

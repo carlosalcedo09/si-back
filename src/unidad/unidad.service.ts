@@ -36,7 +36,7 @@ export class UnidadService {
         });
 
         if(!unidadFound){
-           return new HttpException('Unidad not found', HttpStatus.NOT_FOUND);
+            return new HttpException('Unidad not found', HttpStatus.NOT_FOUND);
         }
         return unidadFound;
     }
@@ -44,7 +44,7 @@ export class UnidadService {
     async deleteUnidad(idUnidad: string){
         const result= await this.unidadRepository.delete({idUnidad})
         if(result.affected===0){
-          return new HttpException('Unidad not found', HttpStatus.NOT_FOUND);
+            return new HttpException('Unidad not found', HttpStatus.NOT_FOUND);
         }
         return result;
     }

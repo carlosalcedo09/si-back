@@ -18,7 +18,7 @@ export class DetallenotaService {
     
     async createDetalleNota(detalleNota: CreateDetalleNotaDto){
         
-       const detalleNFound= await this.detalleNRepository.findOne({
+        const detalleNFound= await this.detalleNRepository.findOne({
             where:{
                 idDetalleMC: detalleNota.idDetalleMC,
                 idTipo: detalleNota.idTipo,
@@ -26,7 +26,7 @@ export class DetallenotaService {
             }
         })
         if(detalleNFound){
-           return new HttpException('Detalle nota already exists',HttpStatus.CONFLICT)
+            return new HttpException('Detalle nota already exists',HttpStatus.CONFLICT)
         }
 
         const notaFound= await this.notaService.getNota(detalleNota.idDetalleMC,);
@@ -37,7 +37,7 @@ export class DetallenotaService {
             return new HttpException(
                 'Faltan datos (idNota, idUnidad, idTipo)',
                 HttpStatus.NOT_FOUND,
-              );
+                );
         }
 
         const newDetalleN= this.detalleNRepository.create(detalleNota)
@@ -50,7 +50,7 @@ export class DetallenotaService {
         });
     }
 
-   async getDetalleNota(idDetalleMC: string, idTipo: string, idUnidad: string){
+    async getDetalleNota(idDetalleMC: string, idTipo: string, idUnidad: string){
         const detalleNFound = await this.detalleNRepository.findOne({
             where:{
                 idDetalleMC,
@@ -66,9 +66,9 @@ export class DetallenotaService {
     }
 
     async deleteDetalleNota(idDetalleMC: string, idTipo: string, idUnidad: string){
-       const result= await this.detalleNRepository.delete({idDetalleMC,idTipo,idUnidad});
-       if(result.affected === 0){
+        const result= await this.detalleNRepository.delete({idDetalleMC,idTipo,idUnidad});
+        if(result.affected === 0){
         return new HttpException('Detalle nota not found', HttpStatus.NOT_FOUND);
-       }
-       return result;
+        }
+        return result;
     }}

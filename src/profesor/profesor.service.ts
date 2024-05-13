@@ -17,13 +17,13 @@ export class ProfesorService {
     
     async createProfesor(profesor: CreateProfesorDto){
         
-       const profesorFound= await this.profesorRepository.findOne({
+        const profesorFound= await this.profesorRepository.findOne({
             where:{
                 codigoD: profesor.codigoD
             }
         })
         if(profesorFound){
-           return new HttpException('Teacher already exists',HttpStatus.CONFLICT)
+            return new HttpException('Teacher already exists',HttpStatus.CONFLICT)
         }
 
         const estadoFound= await this.estadocivilService.getEstado(profesor.idEstado,);
@@ -34,7 +34,7 @@ export class ProfesorService {
             return new HttpException(
                 'Faltan datos (idEstadoCivil, idGenero, idDistrito)',
                 HttpStatus.NOT_FOUND,
-              );
+                );
         }
 
         const newProfesor= this.profesorRepository.create(profesor)
@@ -47,7 +47,7 @@ export class ProfesorService {
         });
     }
 
-   async getProfesor(codigoD: number){
+    async getProfesor(codigoD: number){
         const profesorFound = await this.profesorRepository.findOne({
             where:{
                 codigoD
@@ -61,10 +61,10 @@ export class ProfesorService {
     }
 
     async deleteProfesor(codigoD: number){
-       const result= await this.profesorRepository.delete({codigoD});
-       if(result.affected === 0){
-        return new HttpException('Teacher not found', HttpStatus.NOT_FOUND);
-       }
-       return result;
-    }
+        const result= await this.profesorRepository.delete({codigoD});
+        if(result.affected === 0){
+            return new HttpException('Teacher not found', HttpStatus.NOT_FOUND);
+        }
+        return result;
+        }
 }

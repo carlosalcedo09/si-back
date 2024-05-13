@@ -1,10 +1,10 @@
 import { Controller,
-         Post,
-         Body,
-         Get,
-         Param,
-         Delete
- } from '@nestjs/common';
+            Post,
+            Body,
+            Get,
+            Param,
+            Delete
+    } from '@nestjs/common';
 import { EstadocivilService } from './estadocivil.service';
 import { EstadoCivil } from './estadocivil.entity';
 import { CreateEstadoCivilDto } from './dto/create-estadocivil.dto';
