@@ -32,9 +32,9 @@ export class UsuarioController {
         return this.usuarioService.createUsuario(newUsuario)
     }
     
-    @Get(':id')
-    getUsuario(@Param('id', ParseIntPipe) id:number){
-        return this.usuarioService.getUsuario(id);
+    @Get(':codigoD')
+    getUsuario(@Param('codigoD', ParseIntPipe) codigoD:number){
+        return this.usuarioService.getUsuario(codigoD);
     }
     
     @Delete(':id')

@@ -32,10 +32,10 @@ export class UsuarioService {
         return this.usuarioRepository.find()
     }
 
-   async getUsuario(id: number){
+   async getUsuario(codigoD: number){
         const usuarioFound = await this.usuarioRepository.findOne({
             where:{
-                id,
+                codigoD,
             }
         });
 
@@ -82,8 +82,6 @@ export class UsuarioService {
         } catch (error) {
           throw new NotFoundException('Credenciales incorrectas');
         }
-      }
-      
-      
+      }      
 }
 
