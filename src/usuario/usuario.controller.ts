@@ -42,9 +42,9 @@ export class UsuarioController {
         return this.usuarioService.deleteUsuario(id)
     }
 
-    @Patch(':id')
-    updateUsuario(@Param('id', ParseIntPipe)id:number, @Body() usuario: UpdateUsuarioDto){
-        this.usuarioService.updateUsuario(id,usuario)
+    @Patch(':codigoD')
+    updateUsuario(@Param('codigoD', ParseIntPipe)codigoD:number, @Body() usuario: UpdateUsuarioDto){
+        this.usuarioService.updateUsuario(codigoD,usuario)
     }
 
     @Post('validar')

@@ -53,10 +53,10 @@ export class UsuarioService {
        return result;
     }
 
-    async updateUsuario(id: number, usuario: UpdateUsuarioDto ){
+    async updateUsuario(codigoD: number, usuario: UpdateUsuarioDto ){
         const usuarioFound= await this.usuarioRepository.findOne({
             where: {
-                id,
+                codigoD,
             }
         })
 
