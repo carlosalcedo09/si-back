@@ -17,7 +17,7 @@ export class GeneroService {
         })
 
         if(generoFound){
-           return new HttpException('Genero already exists', HttpStatus.CONFLICT)
+            return new HttpException('Genero already exists', HttpStatus.CONFLICT)
         }
 
         const newGenero= this.generoRepository.create(genero)

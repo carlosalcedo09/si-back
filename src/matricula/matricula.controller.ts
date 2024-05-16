@@ -8,6 +8,7 @@ import { Controller,
 import { MatriculaService } from './matricula.service';
 import { Matricula } from './matricula.entity';
 import { CreateMatriculaDto } from './dto/create-matricula.dto';
+import { BoletaNotasDto } from './dto/boleta-notas.dto';
 
 @Controller('matricula')
 export class MatriculaController {
@@ -48,6 +49,17 @@ export class MatriculaController {
     ) {
         return this.matriculaService.getCondicionNota(codigoD, idCurso, aula, idUnidad);
     }
+
+
+    @Get('boleta-nota/:codigoD/:idCurso/:aula')
+    async BoletaNotas(
+        @Param('codigoD') codigoD: number,
+        @Param('idCurso') idCurso: string,
+        @Param('aula') aula: string
+    ): Promise<BoletaNotasDto[]> {
+        return this.matriculaService. BoletaNotas(codigoD, idCurso, aula);
+    }
+
 
 
 }
