@@ -22,6 +22,11 @@ export class DetallematriculaController {
     createDetalleM( @Body() newDetalleMatricula: CreateDetalleMatriculaDto){
         return this.detalleMService.createDetalleM(newDetalleMatricula);
     }
+
+    @Get('/cantidadCurso')
+    async CantidadTotalPorCurso():Promise<any[]> {
+        return this.detalleMService.CantidadTotalPorCurso();
+    }
     
     @Get(':idM/:idCurso')
     getDetalleM(@Param('idM', ParseIntPipe) id:number,@Param('idCurso') idC:string){

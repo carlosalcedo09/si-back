@@ -13,6 +13,9 @@ export class Usuario{
     password: string
 
     @Column()
+    issuperuser: boolean
+
+    @Column()
     codigoD: number
 
     @OneToOne(()=>Profesor, (profesor)=>profesor.usuario)

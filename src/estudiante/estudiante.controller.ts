@@ -24,6 +24,18 @@ export class EstudianteController {
         return this.estudianteService.createEstudiante(newEstudiante);
     }
     
+    @Get('/total')
+    async getTotalEstudiantes() {
+        const total = await this.estudianteService.getTotalEstudiantes();
+        return { total };
+    }
+
+    @Get('/categoria')
+    async getEstudiantesPorCategoria() {
+        const data = await this.estudianteService.getEstudiantesPorCategoria();
+        return data;
+    }
+    
     @Get(':id')
     getEstudiante(@Param('id', ParseIntPipe) id:number){
         return this.estudianteService.getEstudiante(id);
