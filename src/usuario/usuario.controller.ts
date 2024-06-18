@@ -6,15 +6,12 @@ import { Controller,
          ParseIntPipe, 
          Delete,
         Patch,
-        ValidationPipe,
-        BadRequestException,
         HttpException,
         HttpStatus} from '@nestjs/common';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UsuarioService } from './usuario.service';
 import { Usuario } from './usuario.entity';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
-import { validate } from 'class-validator';
 import { LoginUsuarioDto } from './dto/login-usuario.dto';
 
 @Controller('usuario')
@@ -28,8 +25,8 @@ export class UsuarioController {
     }
 
     @Post()
-    createUsuarios( @Body() newUsuario: CreateUsuarioDto){
-        return this.usuarioService.createUsuario(newUsuario)
+    async createUsuarios( @Body() newUsuario: CreateUsuarioDto){
+        return await this.usuarioService.createUsuario(newUsuario)
     }
     
     @Get(':codigoD')

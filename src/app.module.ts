@@ -23,6 +23,8 @@ import { DetallematriculaModule } from './detallematricula/detallematricula.modu
 import { PabellonModule } from './pabellon/pabellon.module';
 import { NotasModule } from './notas/notas.module';
 import { DetallenotaModule } from './detallenota/detallenota.module';
+import { MailerModule } from './mailer/mailer.module';
+import { EmailController } from './mailer/mailer.controller'; 
 
 @Module({
   imports: [
@@ -60,8 +62,9 @@ import { DetallenotaModule } from './detallenota/detallenota.module';
     DetallematriculaModule,
     PabellonModule,
     NotasModule,
+    MailerModule,
     DetallenotaModule],
-  controllers: [AppController],
+  controllers: [AppController,EmailController],
   providers: [AppService],
 })
 export class AppModule {}

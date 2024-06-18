@@ -8,6 +8,7 @@ import { DistritoService } from 'src/distrito/distrito.service';
 import { CategoriaestudianteService } from 'src/categoriaestudiante/categoriaestudiante.service';
 import { CarreraService } from 'src/carrera/carrera.service';
 import { CreateEstudianteDto } from './dto/create-estudiante.dto';
+import { CategoriaEstudiante } from 'src/categoriaestudiante/categoriaestudiante.entity';
 
 @Injectable()
 export class EstudianteService {
@@ -71,6 +72,28 @@ export class EstudianteService {
         if(result.affected === 0){
         return new HttpException('Student not found', HttpStatus.NOT_FOUND);
         }
+        return result;
+    }
+
+    async getTotalEstudiantes(): Promise<number> {
+        const totalEstudiantes = await this.estudianteRepository.count();
+        return totalEstudiantes;
+    }
+
+    async getEstudiantesPorCategoria(): Promise<any> {
+        const totalEstudiantes = await this.estudianteRepository.count();
+
+        const query = this.estudianteRepository.createQueryBuilder('e')
+            .select('c.descripcionCE', 'descripcionCE')
+            .addSelect('COUNT(*)', 'cantidad')
+            .addSelect(`ROUND((COUNT(*) * 100.0 / ${totalEstudiantes}), 2)`, 'porcentaje')
+            .innerJoin(CategoriaEstudiante, 'c', 'c.idCategoriaE = e.idCategoriaE')
+            .groupBy('c.descripcionCE')
+            .orderBy('cantidad', 'DESC')
+            .limit(3);
+            
+
+        const result = await query.getRawMany();
         return result;
     }
 }

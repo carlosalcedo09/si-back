@@ -23,6 +23,12 @@ export class DetallenotaController {
     createNota( @Body() newDetalleNota: CreateDetalleNotaDto){
         return this.detallenotaService.createDetalleNota(newDetalleNota);
     }
+
+    @Get('tipoNota')
+    async getTipoNota() {
+const result = await this.detallenotaService.getTipoNota();
+        return result;
+    }
     
     @Get(':id/ :idTipo/ :idUnidad')
     getNota(@Param('id') id:string,@Param('idTipo') idT:string,@Param('idUnidad') idU:string, )

@@ -91,4 +91,18 @@ export class DetallematriculaService {
             .getRawMany();
     }
 
+    async CantidadTotalPorCurso(): Promise<any[]> {
+        const queryBuilder = this.detallematriculaRepository.createQueryBuilder('detalle')
+        .innerJoin('detalle.curso', 'curso')
+        .innerJoin('detalle.matricula', 'matricula')
+        .select('curso.NombreCurso', 'NombreCurso')
+        .addSelect('COUNT(matricula.codigoE)', 'totalE')
+        .addSelect('COUNT(*)', 'cantidad')
+        .addSelect('ROUND((COUNT(matricula.codigoE) * 100.0 / NULLIF(COUNT(*), 1)), 2)', 'porcentaje')
+        .groupBy('curso.NombreCurso');
+
+    const results = await queryBuilder.getRawMany();
+    return results;
+    }
+
 }

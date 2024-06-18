@@ -4,7 +4,6 @@ import { Matricula } from './matricula.entity';
 import { Repository } from 'typeorm';
 import { EstudianteService } from 'src/estudiante/estudiante.service';
 import { CreateMatriculaDto } from './dto/create-matricula.dto';
-import { BoletaNotasDto } from './dto/boleta-notas.dto';
 
 @Injectable()
 export class MatriculaService {

@@ -71,4 +71,25 @@ export class DetallenotaService {
         return new HttpException('Detalle nota not found', HttpStatus.NOT_FOUND);
         }
         return result;
-    }}
+    }
+
+    async getTipoNota(): Promise<any> {
+        const query = this.detalleNRepository.createQueryBuilder('d')
+            .select([
+                `CASE 
+                    WHEN t.descripcion IN ('Examen Final', 'Examen Parcial') THEN 'Exámenes'
+                    ELSE t.descripcion 
+                END AS Tipo`,
+                'COALESCE(COUNT(d.idTipo), 0) AS cantidad'
+            ])
+            .innerJoin('d.tipo', 't')
+            .innerJoin('d.notas', 'n')
+            .groupBy('CASE WHEN t.descripcion IN (\'Examen Final\', \'Examen Parcial\') THEN \'Exámenes\' ELSE t.descripcion END')
+            .getRawMany();
+        
+        return query;
+
+    }
+
+    
+}
