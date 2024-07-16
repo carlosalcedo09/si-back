@@ -36,11 +36,15 @@ export class NotasService {
         return this.notasRepository.save(newNota)
     }
 
-    getNotas(){
-        return this.notasRepository.find({
-            relations:['detallematricula'],
-        });
-    }
+    async getNotas() {
+        try {
+            return await this.notasRepository.find({
+                relations: ['detallenota', 'detalleMatricula'],
+            });
+        } catch (error) {
+            throw new HttpException('Error al obtener las notas', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     async getNota(idDetalleMC: string){
         const notaFound = await this.notasRepository.findOne({
